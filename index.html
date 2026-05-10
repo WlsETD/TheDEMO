@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的作品集 - Portfolio</title>
+    <!-- Font Awesome CDN (已修正網址) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            font-weight: bolder;
+        }
+        /* --- 全域樣式 --- */
+        :root {
+            --wii-bg: #f2f2f2;
+            --wii-card-bg: #ffffff;
+            --wii-text-main: #4d4d4d;
+            --wii-text-sub: #313131;
+            --wii-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --wii-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.12);
+            
+            /* Google Colors */
+            --google-blue: #4285F4;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC05;
+            --google-green: #34A853;
+            --google-orange: #ff6d01;
+            
+            --theme-color: #00aaff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #ffffff 0%, #e6e6e6 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            color: var(--wii-text-main);
+        }
+
+        header {
+            margin-bottom: 50px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--wii-text-main);
+            position: relative;
+        }
+
+        h1::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: #ccc;
+            margin: 10px auto;
+            border-radius: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 10px;
+        }
+
+        .card-blue { --theme-color: var(--google-blue); }
+        .card-red { --theme-color: var(--google-red); }
+        .card-yellow { --theme-color: var(--google-yellow); }
+        .card-green { --theme-color: var(--google-green); }
+        .card-orange { --theme-color: var(--google-orange); }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .card {
+            background: var(--wii-card-bg);
+            border-radius: 35px;
+            padding: 65px 35px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: var(--wii-shadow);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border: 1.5px solid var(--theme-color);
+            border-radius: 50%;
+            opacity: 0.12;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .card:hover .circle {
+            opacity: 0.3;
+        }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: var(--wii-shadow-hover);
+        }
+
+        .card:active {
+            transform: scale(0.96);
+            transition: 0.1s;
+        }
+
+        .icon-box {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            color: var(--theme-color);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .card:hover .icon-box {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--wii-text-sub);
+            line-height: 1.6;
+            margin: 0;
+            text-align: justify;
+            z-index: 2;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-up { animation: fadeUp 0.8s ease-out forwards; }
+
+        footer {
+            margin-top: auto;
+            padding-top: 60px;
+            font-size: 0.85rem;
+            color: var(--wii-text-sub);
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .grid-container { gap: 20px; }
+            .card { padding: 50px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>我的作品集</h1>
+    </header>
+
+    <main class="grid-container">
+        <!-- 作品 0 - 藍色 -->
+        <a href="https://wlsetd.github.io/chain-HealScape/" target="_blank" class="card-link card-blue" style="animation-delay: 0.1s;">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-kit-medical"></i></div>
+                <h3>復健醫療系統(展示版)</h3>
+                <p>運用 **FHIR** 標準整合 **MediaPipe AI** 技術，實作無穿戴式復健偵測與數據去識別化，打造智慧醫病管理平台。</p>
+            </div>
+        </a>
+
+        <!-- 作品 1 - 紅色 -->
+        <a href="https://wlsetd.github.io/chain-HealScape/" target="_blank" class="card-link card-red" style="animation-delay: 0.2s;">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-link"></i></div>
+                <h3>區塊健康幣系統(展示版)</h3>
+                <p>結合 Web3 激勵機制，將患者的復健數據（Proof of Exercise）轉化為具備價值的區塊健康幣（Health Token）。</p>
+            </div>
+        </a>
+
+        <!-- 作品 2 - 黃色 -->
+        <a href="https://wlsetd.github.io/UniversityExamSystem/Guide/index.html" target="_blank" class="card-link card-yellow" style="animation-delay: 0.3s;">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-book"></i></div>
+                <h3>大學段考練習系統</h3>
+                <p>提供給同學模擬考試與題庫練習平台，可自行上傳題目檔案，並針對錯誤題目進行強化練習。</p>
+            </div>
+        </a>
+
+        <!-- 作品 3 - 綠色 -->
+        <a href="https://wlsetd.github.io/ACCAPP/index.html" target="_blank" class="card-link card-green" style="animation-delay: 0.4s;">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-coins"></i></div>
+                <h3>記帳 APP(展示版)</h3>
+                <p>專為學生與上班族設計的日常收支管理工具，介面直覺且功能完整，助您輕鬆掌握財務狀況。</p>
+            </div>
+        </a>
+
+        <!-- 作品 4 - 橘色 -->
+        <a href="https://wlsetd.github.io/3rd/index.html" target="_blank" class="card-link card-orange" style="animation-delay: 0.5s;">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-trophy"></i></div>
+                <h3>技藝競賽作品</h3>
+                <p>四小時內完成的完整網站，包含購買系統、小型遊戲、模擬 AI 機器人、會員系統與訪客留言版。</p>
+            </div>
+        </a>
+        <a href="https://wlsetd.github.io/3rd/index.html" target="_blank" class="card-link card-purple" style="animation-delay: 0.5s;">
+            <div class="card">
+                <div class="icon-box"><i class="fa-solid fa-user"></i></div>
+                <h3>GitHub</h3>
+                <p>所有作品(包括全端網站與APP)作品的完成版與原代碼</p>
+            </div>
+        </a>
+    </main>
+
+    <footer>
+  
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            const cardLinks = document.querySelectorAll('.card-link');
+
+            const quadrants = [
+                { x: [10, 30], y: [10, 30] },   
+                { x: [60, 80], y: [10, 30] },   
+                { x: [10, 30], y: [60, 80] },   
+                { x: [60, 80], y: [60, 80] }    
+            ];
+
+            cards.forEach(card => {
+                quadrants.forEach((q) => {
+                    const circle = document.createElement('div');
+                    circle.className = 'circle';
+                    
+                    const size = Math.random() * 40 + 60; 
+                    const posX = Math.random() * (q.x[1] - q.x[0]) + q.x[0];
+                    const posY = Math.random() * (q.y[1] - q.y[0]) + q.y[0];
+                    
+                    const moveX = (posX < 50 ? -1 : 1) * (Math.random() * 15 + 10); 
+                    const moveY = (posY < 50 ? -1 : 1) * (Math.random() * 15 + 10);
+                    const scale = Math.random() * 0.4 + 1.6; 
+                    
+                    circle.style.width = `${size}px`;
+                    circle.style.height = `${size}px`;
+                    circle.style.left = `${posX}%`;
+                    circle.style.top = `${posY}%`;
+
+                    card.appendChild(circle);
+
+                    card.addEventListener('mouseenter', () => {
+                        circle.style.transform = `scale(${scale}) translate(${moveX}px, ${moveY}px)`;
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        circle.style.transform = `scale(1) translate(0, 0)`;
+                    });
+                });
+            });
+
+            cardLinks.forEach((link) => {
+                setTimeout(() => { link.classList.add('animate-up'); }, 100);
+            });
+
+            if (window.innerWidth > 1024) {
+                document.addEventListener('mousemove', (e) => {
+                    const x = (window.innerWidth / 2 - e.pageX) / 65;
+                    const y = (window.innerHeight / 2 - e.pageY) / 65;
+                    document.body.style.backgroundPosition = `${x}px ${y}px`;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
